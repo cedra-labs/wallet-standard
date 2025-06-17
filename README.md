@@ -9,4 +9,4 @@ It is based on a general [Wallet Standard](https://github.com/wallet-standard/wa
 - [CedraWallet](./src/wallet.ts) and [CedraWalletAccount](./src/account.ts) interfaces
 - Wallet [registerWallet](https://github.com/wallet-standard/wallet-standard/blob/master/packages/core/wallet/src/register.ts#L25) function
 - App [getCedraWallets](./src/detect.ts) function
-- Example of a [wallet integration](./example/wallet.ts)
+- Example of a [wallet integration](./example/basic/wallet.ts)

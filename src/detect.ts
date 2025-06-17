@@ -1,4 +1,4 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
 import {
@@ -9,19 +9,19 @@ import {
 } from '@wallet-standard/core'
 
 import { MinimallyRequiredFeatures } from './features'
-import { AptosWallet } from './wallet'
+import { CedraWallet } from './wallet'
 
-// These features are absolutely required for wallets to function in the Aptos ecosystem.
+// These features are absolutely required for wallets to function in the Cedra ecosystem.
 // Eventually, as wallets have more consistent support of features, we may want to extend this list.
 const REQUIRED_FEATURES: (keyof MinimallyRequiredFeatures)[] = [
-  'aptos:account',
-  'aptos:connect',
-  'aptos:disconnect',
-  'aptos:network',
-  'aptos:onAccountChange',
-  'aptos:onNetworkChange',
-  'aptos:signMessage',
-  'aptos:signTransaction'
+  'cedra:account',
+  'cedra:connect',
+  'cedra:disconnect',
+  'cedra:network',
+  'cedra:onAccountChange',
+  'cedra:onNetworkChange',
+  'cedra:signMessage',
+  'cedra:signTransaction'
 ]
 
 export function isWalletWithRequiredFeatureSet<AdditionalFeatures extends Wallet['features']>(
@@ -34,11 +34,11 @@ export function isWalletWithRequiredFeatureSet<AdditionalFeatures extends Wallet
 }
 
 /**
- * Helper function to get only Aptos wallets
- * @returns Aptos compatible wallets and `on` event to listen to wallets register event
+ * Helper function to get only Cedra wallets
+ * @returns Cedra compatible wallets and `on` event to listen to wallets register event
  */
-export function getAptosWallets(): {
-  aptosWallets: AptosWallet[]
+export function getCedraWallets(): {
+  cedraWallets: CedraWallet[]
   on: <E extends keyof WalletsEventsListeners>(
     event: E,
     listener: WalletsEventsListeners[E]
@@ -48,15 +48,15 @@ export function getAptosWallets(): {
 
   const wallets = get()
 
-  const aptosWallets: Wallet[] = []
+  const cedraWallets: Wallet[] = []
 
   wallets.map((wallet: Wallet) => {
-    const isAptos = isWalletWithRequiredFeatureSet(wallet)
+    const isCedra = isWalletWithRequiredFeatureSet(wallet)
 
-    if (isAptos) {
-      aptosWallets.push(wallet)
+    if (isCedra) {
+      cedraWallets.push(wallet)
     }
   })
 
-  return { aptosWallets: aptosWallets as AptosWallet[], on }
+  return { cedraWallets: cedraWallets as CedraWallet[], on }
 }

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@aptos-labs/wallet-standard": "workspace:*"
+    "@cedra-labs/wallet-standard": "workspace:*"
   }
 }

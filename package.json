@@ -1,11 +1,11 @@
 {
-  "name": "@aptos-labs/wallet-standard",
-  "description": "Aptos wallet standard",
+  "name": "@cedra-labs/wallet-standard",
+  "description": "Cedra wallet standard",
   "version": "0.4.0",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/aptos-labs/wallet-standard",
+  "homepage": "https://github.com/cedra-labs/wallet-standard",
   "bugs": {
-    "url": "https://github.com/aptos-labs/wallet-standard/issues/new/choose"
+    "url": "https://github.com/cedra-labs/wallet-standard/issues/new/choose"
   },
   "main": "dist/common/index.js",
   "module": "dist/esm/index.mjs",
@@ -41,12 +41,12 @@
     "prettier:fix": "prettier -w --ignore-unknown ."
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": "^2.0.0",
+    "@cedra-labs/ts-sdk": "^2.0.0",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
-    "prettier": "^2.5.1",
-    "tsup": "^7.1.0",
-    "typescript": "^5.1.6"
+    "prettier": "^2.8.8",
+    "tsup": "^7.2.0",
+    "typescript": "^5.8.3"
   }
 }

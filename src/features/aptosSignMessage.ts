@@ -1,28 +1,28 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { Signature } from '@aptos-labs/ts-sdk'
+import { Signature } from '@cedra-labs/ts-sdk'
 import { UserResponse } from '../misc'
 
 /** Version of the feature. */
-export type AptosSignMessageVersion = '1.0.0'
+export type CedraSignMessageVersion = '1.0.0'
 /** Name of the feature. */
-export const AptosSignMessageNamespace = 'aptos:signMessage'
+export const CedraSignMessageNamespace = 'cedra:signMessage'
 
-export type AptosSignMessageFeature = {
+export type CedraSignMessageFeature = {
   /** Namespace for the feature. */
-  [AptosSignMessageNamespace]: {
+  [CedraSignMessageNamespace]: {
     /** Version of the feature API. */
-    version: AptosSignMessageVersion
-    signMessage: AptosSignMessageMethod
+    version: CedraSignMessageVersion
+    signMessage: CedraSignMessageMethod
   }
 }
 
-export type AptosSignMessageMethod = (
-  input: AptosSignMessageInput
-) => Promise<UserResponse<AptosSignMessageOutput>>
+export type CedraSignMessageMethod = (
+  input: CedraSignMessageInput
+) => Promise<UserResponse<CedraSignMessageOutput>>
 
-export type AptosSignMessageInput = {
+export type CedraSignMessageInput = {
   address?: boolean
   application?: boolean
   chainId?: boolean
@@ -30,13 +30,13 @@ export type AptosSignMessageInput = {
   nonce: string
 }
 
-export type AptosSignMessageOutput = {
+export type CedraSignMessageOutput = {
   address?: string
   application?: string
   chainId?: number
   fullMessage: string
   message: string
   nonce: string
-  prefix: 'APTOS'
+  prefix: 'CEDRA'
   signature: Signature
 }

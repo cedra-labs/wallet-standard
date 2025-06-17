@@ -1,4 +1,4 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
 import {
@@ -9,45 +9,45 @@ import {
   Network,
   PublicKey,
   TransactionPayload
-} from '@aptos-labs/ts-sdk'
+} from '@cedra-labs/ts-sdk'
 import { UserResponse } from '../misc'
 
 // region Feature definition
 
 /** Name of the feature. */
-export const AptosSignTransactionNamespace = 'aptos:signTransaction'
+export const CedraSignTransactionNamespace = 'cedra:signTransaction'
 
-export type AptosSignTransactionFeatureV1_0 = {
-  [AptosSignTransactionNamespace]: {
+export type CedraSignTransactionFeatureV1_0 = {
+  [CedraSignTransactionNamespace]: {
     version: '1.0.0',
-    signTransaction: AptosSignTransactionMethod
+    signTransaction: CedraSignTransactionMethod
   }
 }
 
-export type AptosSignTransactionFeatureV1_1 = {
-  [AptosSignTransactionNamespace]: {
+export type CedraSignTransactionFeatureV1_1 = {
+  [CedraSignTransactionNamespace]: {
     version: '1.1'
-    signTransaction: AptosSignTransactionMethod & AptosSignTransactionMethodV1_1
+    signTransaction: CedraSignTransactionMethod & CedraSignTransactionMethodV1_1
   }
 }
 
 /**
- * A Wallet Standard feature for signing an Aptos transaction, and returning the
+ * A Wallet Standard feature for signing an Cedra transaction, and returning the
  * account authenticator.
  */
-export type AptosSignTransactionFeature =
-  AptosSignTransactionFeatureV1_0 | AptosSignTransactionFeatureV1_1;
+export type CedraSignTransactionFeature =
+  CedraSignTransactionFeatureV1_0 | CedraSignTransactionFeatureV1_1;
 
 // endregion
 
 // region V1.0
 
-export type AptosSignTransactionOutput = AccountAuthenticator;
+export type CedraSignTransactionOutput = AccountAuthenticator;
 
-export type AptosSignTransactionMethod = (
+export type CedraSignTransactionMethod = (
   transaction: AnyRawTransaction,
   asFeePayer?: boolean
-) => Promise<UserResponse<AptosSignTransactionOutput>>
+) => Promise<UserResponse<CedraSignTransactionOutput>>
 
 // endregion
 
@@ -58,7 +58,7 @@ export interface AccountInput {
   publicKey?: PublicKey;
 }
 
-export interface AptosSignTransactionInputV1_1 {
+export interface CedraSignTransactionInputV1_1 {
   expirationSecondsFromNow?: number; // defaults to 30 seconds (depends on wallet)
   expirationTimestamp?: number;
   feePayer?: AccountInput; // defaults to no fee payer
@@ -72,11 +72,11 @@ export interface AptosSignTransactionInputV1_1 {
   signerAddress?: AccountAddress;
 }
 
-export interface AptosSignTransactionOutputV1_1 {
+export interface CedraSignTransactionOutputV1_1 {
   authenticator: AccountAuthenticator;
   rawTransaction: AnyRawTransaction;
 }
 
-export type AptosSignTransactionMethodV1_1 = (
-  input: AptosSignTransactionInputV1_1
-) => Promise<UserResponse<AptosSignTransactionOutputV1_1>>;
+export type CedraSignTransactionMethodV1_1 = (
+  input: CedraSignTransactionInputV1_1
+) => Promise<UserResponse<CedraSignTransactionOutputV1_1>>;

@@ -1,18 +1,18 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
 /** Version of the feature. */
-export type AptosDisconnectVersion = '1.0.0'
+export type CedraDisconnectVersion = '1.0.0'
 /** Name of the feature. */
-export const AptosDisconnectNamespace = 'aptos:disconnect'
+export const CedraDisconnectNamespace = 'cedra:disconnect'
 
-export type AptosDisconnectFeature = {
+export type CedraDisconnectFeature = {
   /** Namespace for the feature. */
-  [AptosDisconnectNamespace]: {
+  [CedraDisconnectNamespace]: {
     /** Version of the feature API. */
-    version: AptosDisconnectVersion
-    disconnect: AptosDisconnectMethod
+    version: CedraDisconnectVersion
+    disconnect: CedraDisconnectMethod
   }
 }
 
-export type AptosDisconnectMethod = () => Promise<void>
+export type CedraDisconnectMethod = () => Promise<void>

@@ -1,36 +1,36 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { InputGenerateTransactionPayloadData } from '@aptos-labs/ts-sdk'
+import { InputGenerateTransactionPayloadData } from '@cedra-labs/ts-sdk'
 import { UserResponse } from '../misc'
 
 /** Version of the feature. */
-export type AptosSignAndSubmitTransactionVersion = '1.1.0'
+export type CedraSignAndSubmitTransactionVersion = '1.1.0'
 /** Name of the feature. */
-export const AptosSignAndSubmitTransactionNamespace = 'aptos:signAndSubmitTransaction'
+export const CedraSignAndSubmitTransactionNamespace = 'cedra:signAndSubmitTransaction'
 /**
  * A Wallet Standard feature for signing a transaction, and returning the
  * hash of the transaction.
  */
-export type AptosSignAndSubmitTransactionFeature = {
+export type CedraSignAndSubmitTransactionFeature = {
   /** Namespace for the feature. */
-  [AptosSignAndSubmitTransactionNamespace]: {
+  [CedraSignAndSubmitTransactionNamespace]: {
     /** Version of the feature API. */
-    version: AptosSignAndSubmitTransactionVersion
-    signAndSubmitTransaction: AptosSignAndSubmitTransactionMethod
+    version: CedraSignAndSubmitTransactionVersion
+    signAndSubmitTransaction: CedraSignAndSubmitTransactionMethod
   }
 }
 
-export type AptosSignAndSubmitTransactionMethod = (
-  transaction: AptosSignAndSubmitTransactionInput
-) => Promise<UserResponse<AptosSignAndSubmitTransactionOutput>>
+export type CedraSignAndSubmitTransactionMethod = (
+  transaction: CedraSignAndSubmitTransactionInput
+) => Promise<UserResponse<CedraSignAndSubmitTransactionOutput>>
 
-export interface AptosSignAndSubmitTransactionInput {
+export interface CedraSignAndSubmitTransactionInput {
   gasUnitPrice?: number;  // defaults to estimated gas unit price
   maxGasAmount?: number;  // defaults to estimated max gas amount
   payload: InputGenerateTransactionPayloadData;
 }
 
-export interface AptosSignAndSubmitTransactionOutput {
+export interface CedraSignAndSubmitTransactionOutput {
   hash: string;
 }

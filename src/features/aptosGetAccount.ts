@@ -1,22 +1,22 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
 import { AccountInfo } from '../AccountInfo'
 
 /** Version of the feature. */
-export type AptosGetAccountVersion = '1.0.0'
+export type CedraGetAccountVersion = '1.0.0'
 /** Name of the feature. */
-export const AptosGetAccountNamespace = 'aptos:account'
+export const CedraGetAccountNamespace = 'cedra:account'
 
-export type AptosGetAccountFeature = {
+export type CedraGetAccountFeature = {
   /** Namespace for the feature. */
-  [AptosGetAccountNamespace]: {
+  [CedraGetAccountNamespace]: {
     /** Version of the feature API. */
-    version: AptosGetAccountVersion
-    account: AptosGetAccountMethod
+    version: CedraGetAccountVersion
+    account: CedraGetAccountMethod
   }
 }
 
-export type AptosGetAccountMethod = () => Promise<AptoGetsAccountOutput>
+export type CedraGetAccountMethod = () => Promise<AptoGetsAccountOutput>
 
 export type AptoGetsAccountOutput = AccountInfo

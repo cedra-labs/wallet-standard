@@ -1,18 +1,18 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
 /** Version of the feature. */
-export type AptosOpenInMobileAppVersion = '1.0.0'
+export type CedraOpenInMobileAppVersion = '1.0.0'
 /** Name of the feature. */
-export const AptosOpenInMobileAppNamespace = 'aptos:openInMobileApp'
+export const CedraOpenInMobileAppNamespace = 'cedra:openInMobileApp'
 
-export type AptosOpenInMobileAppFeature = {
+export type CedraOpenInMobileAppFeature = {
   /** Namespace for the feature. */
-  [AptosOpenInMobileAppNamespace]: {
+  [CedraOpenInMobileAppNamespace]: {
     /** Version of the feature API. */
-    version: AptosOpenInMobileAppVersion
-    openInMobileApp: AptosOpenInMobileAppMethod
+    version: CedraOpenInMobileAppVersion
+    openInMobileApp: CedraOpenInMobileAppMethod
   }
 }
 
-export type AptosOpenInMobileAppMethod = () => void
+export type CedraOpenInMobileAppMethod = () => void

@@ -6,7 +6,7 @@ import {
   PublicKey,
   Serializable,
   Serializer, SigningScheme
-} from '@aptos-labs/ts-sdk'
+} from '@cedra-labs/ts-sdk'
 
 export interface AccountInfoInput {
   address: AccountAddressInput

@@ -1,7 +1,7 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { Network } from '@aptos-labs/ts-sdk'
+import { Network } from '@cedra-labs/ts-sdk'
 
 export type TransactionHash = `0x${string}`
 

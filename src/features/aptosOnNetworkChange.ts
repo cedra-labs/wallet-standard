@@ -1,22 +1,22 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
 import { NetworkInfo } from '../misc'
 
 /** Version of the feature. */
-export type AptosOnNetworkChangeVersion = '1.0.0'
+export type CedraOnNetworkChangeVersion = '1.0.0'
 /** Name of the feature. */
-export const AptosOnNetworkChangeNamespace = 'aptos:onNetworkChange'
+export const CedraOnNetworkChangeNamespace = 'cedra:onNetworkChange'
 
-export type AptosOnNetworkChangeFeature = {
+export type CedraOnNetworkChangeFeature = {
   /** Namespace for the feature. */
-  [AptosOnNetworkChangeNamespace]: {
+  [CedraOnNetworkChangeNamespace]: {
     /** Version of the feature API. */
-    version: AptosOnNetworkChangeVersion
-    onNetworkChange: AptosOnNetworkChangeMethod
+    version: CedraOnNetworkChangeVersion
+    onNetworkChange: CedraOnNetworkChangeMethod
   }
 }
 
-export type AptosOnNetworkChangeMethod = (input: AptosOnNetworkChangeInput) => Promise<void>
+export type CedraOnNetworkChangeMethod = (input: CedraOnNetworkChangeInput) => Promise<void>
 
-export type AptosOnNetworkChangeInput = (newNetwork: NetworkInfo) => void
+export type CedraOnNetworkChangeInput = (newNetwork: NetworkInfo) => void

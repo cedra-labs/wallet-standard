@@ -1,28 +1,28 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-export type ChainsId = `${string}:${string}` // e.g. 'aptos:devnet'
-/** APTOS Devnet */
-export const APTOS_DEVNET_CHAIN = 'aptos:devnet'
+export type ChainsId = `${string}:${string}` // e.g. 'cedra:devnet'
+/** CEDRA Devnet */
+export const CEDRA_DEVNET_CHAIN = 'cedra:devnet'
 
-/** APTOS Testnet */
-export const APTOS_TESTNET_CHAIN = 'aptos:testnet'
+/** CEDRA Testnet */
+export const CEDRA_TESTNET_CHAIN = 'cedra:testnet'
 
-/** APTOS Localnet */
-export const APTOS_LOCALNET_CHAIN = 'aptos:localnet'
+/** CEDRA Localnet */
+export const CEDRA_LOCALNET_CHAIN = 'cedra:localnet'
 
-/** APTOS Mainnet */
-export const APTOS_MAINNET_CHAIN = 'aptos:mainnet'
+/** CEDRA Mainnet */
+export const CEDRA_MAINNET_CHAIN = 'cedra:mainnet'
 
-export const APTOS_CHAINS = [
-  APTOS_DEVNET_CHAIN,
-  APTOS_TESTNET_CHAIN,
-  APTOS_LOCALNET_CHAIN,
-  APTOS_MAINNET_CHAIN
+export const CEDRA_CHAINS = [
+  CEDRA_DEVNET_CHAIN,
+  CEDRA_TESTNET_CHAIN,
+  CEDRA_LOCALNET_CHAIN,
+  CEDRA_MAINNET_CHAIN
 ] as const
 
-export type AptosChain =
-  | typeof APTOS_DEVNET_CHAIN
-  | typeof APTOS_TESTNET_CHAIN
-  | typeof APTOS_LOCALNET_CHAIN
-  | typeof APTOS_MAINNET_CHAIN
+export type CedraChain =
+  | typeof CEDRA_DEVNET_CHAIN
+  | typeof CEDRA_TESTNET_CHAIN
+  | typeof CEDRA_LOCALNET_CHAIN
+  | typeof CEDRA_MAINNET_CHAIN

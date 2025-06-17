@@ -1,6 +1,6 @@
-import { SigningScheme } from '@aptos-labs/ts-sdk'
+import { SigningScheme } from '@cedra-labs/ts-sdk'
 import { WalletAccount } from '@wallet-standard/core'
 
-export interface AptosWalletAccount extends WalletAccount {
+export interface CedraWalletAccount extends WalletAccount {
   readonly signingScheme: SigningScheme
 }

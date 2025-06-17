@@ -2,33 +2,33 @@ import {
   Account,
   AccountAuthenticator,
   AnyRawTransaction,
-  Aptos,
-  AptosConfig,
+  Cedra,
+  CedraConfig,
   Network,
   SigningScheme
-} from '@aptos-labs/ts-sdk'
+} from '@cedra-labs/ts-sdk'
 import {
-  APTOS_CHAINS,
+  CEDRA_CHAINS,
   AccountInfo,
-  AptosConnectMethod,
-  AptosDisconnectMethod,
-  AptosGetAccountMethod,
-  AptosGetNetworkMethod,
-  AptosOnAccountChangeMethod,
-  AptosSignMessageInput,
-  AptosSignMessageMethod,
-  AptosSignMessageOutput,
-  AptosSignTransactionMethod,
-  AptosWallet,
+  CedraConnectMethod,
+  CedraDisconnectMethod,
+  CedraGetAccountMethod,
+  CedraGetNetworkMethod,
+  CedraOnAccountChangeMethod,
+  CedraSignMessageInput,
+  CedraSignMessageMethod,
+  CedraSignMessageOutput,
+  CedraSignTransactionMethod,
+  CedraWallet,
   IdentifierArray,
   NetworkInfo,
   UserResponse,
   registerWallet,
-  AptosWalletAccount,
-  AptosOnNetworkChangeMethod,
-  AptosFeatures,
+  CedraWalletAccount,
+  CedraOnNetworkChangeMethod,
+  CedraFeatures,
   UserResponseStatus
-} from '@aptos-labs/wallet-standard'
+} from '@cedra-labs/wallet-standard'
 
 /**
  * This class is a template you can modify to implement an AIP-62 Wallet.
@@ -40,8 +40,8 @@ import {
  * Function implementations are for DEMONSTRATION PURPOSES ONLY. Please ensure you rewrite all features
  * to use your Wallet as the method of communicating on-chain.
  *
- * For a working implementation of this example, see the next-js example app here: https://github.com/aptos-labs/aptos-wallet-adapter/tree/main/apps/nextjs-example
- * (And more specifically, see https://github.com/aptos-labs/aptos-wallet-adapter/blob/main/apps/nextjs-example/src/utils/standardWallet.ts)
+ * For a working implementation of this example, see the next-js example app here: https://github.com/cedra-labs/cedra-wallet-adapter/tree/main/apps/nextjs-example
+ * (And more specifically, see https://github.com/cedra-labs/cedra-wallet-adapter/blob/main/apps/nextjs-example/src/utils/standardWallet.ts)
  */
 
 /**
@@ -57,7 +57,7 @@ import {
  *
  */
 // REVISION - Replace the "MyWallet" in "MyWalletAccount" with the name of your wallet. Ex. "PetraAccount"
-export class MyWalletAccount implements AptosWalletAccount {
+export class MyWalletAccount implements CedraWalletAccount {
   /** Address of the account, corresponding with a public key. */
   address: string
 
@@ -67,11 +67,11 @@ export class MyWalletAccount implements AptosWalletAccount {
   /**
    * Chains supported by the account.
    *
-   * This must be a subset of ["aptos:devnet", "aptos:testnet", "aptos:localnet", "aptos:mainnet"].
+   * This must be a subset of ["cedra:devnet", "cedra:testnet", "cedra:localnet", "cedra:mainnet"].
    *
-   * It is recommended to support at least ["aptos:devnet", "aptos:testnet", and "aptos:mainnet"].
+   * It is recommended to support at least ["cedra:devnet", "cedra:testnet", and "cedra:mainnet"].
    */
-  chains: IdentifierArray = APTOS_CHAINS
+  chains: IdentifierArray = CEDRA_CHAINS
 
   /**
    * Function names of features that are supported for this Wallet's account object.
@@ -98,8 +98,8 @@ export class MyWalletAccount implements AptosWalletAccount {
   constructor(account: Account) {
     this.address = account.accountAddress.toString()
     this.publicKey = account.publicKey.toUint8Array()
-    // REVISION - Choose which chains your wallet supports. This may only be subset of all Aptos networks.
-    this.chains = APTOS_CHAINS // ["aptos:devnet", "aptos:testnet", "aptos:localnet", "aptos:mainnet"]
+    // REVISION - Choose which chains your wallet supports. This may only be subset of all Cedra networks.
+    this.chains = CEDRA_CHAINS // ["cedra:devnet", "cedra:testnet", "cedra:localnet", "cedra:mainnet"]
     /**
      * REVISION - Ensure this signing scheme matches the encoding used to generate your private key.
      */
@@ -112,15 +112,15 @@ export class MyWalletAccount implements AptosWalletAccount {
  *
  * 1. MyWallet should be renamed to be the name of your wallet. Ex. For Petra, MyWallet should be named "PetraWallet". (Be sure to also update references to "MyWallet" in this file.)
  * 2. Update the values of this class to match your Wallet's deatils.
- * 3. Implement each of the features below. (Including adding implementations for any additional required features that you can find here in the "AptosFeatures" type: https://github.com/aptos-labs/wallet-standard/blob/main/src/features/index.ts)
+ * 3. Implement each of the features below. (Including adding implementations for any additional required features that you can find here in the "CedraFeatures" type: https://github.com/cedra-labs/wallet-standard/blob/main/src/features/index.ts)
  */
-export class MyWallet implements AptosWallet {
-  // REVISION - Include the link to create an account using your wallet or your primary website. (Ex. https://chromewebstore.google.com/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci?hl=en)
-  readonly url: string = 'https://aptos.dev'
+export class MyWallet implements CedraWallet {
+  // REVISION - Include the link to create an account using your wallet or your primary website. (Ex. https://chromewebstore.google.com/detail/petra-cedra-wallet/ejjladinnckdgjemekebdpeokbikhfci?hl=en)
+  readonly url: string = 'https://cedra.dev'
   // This should be updated whenever you release a new implementation of "MyWallet"
   readonly version = '1.0.0'
   // REVISION - Change the name to the name of your Wallet. (Ex. "Petra")
-  readonly name: string = 'Aptos Burner'
+  readonly name: string = 'Cedra Burner'
   /**
    * REVISION - Set the icon to be a base64 encoding of your Wallet's logo.
    *
@@ -139,14 +139,14 @@ export class MyWallet implements AptosWallet {
   readonly icon =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAWbSURBVHgB7Z09c9NYFIaPlFSpUqQNK6rQhbSkWJghLZP9BesxfwAqytg1xe7+AY+3go5ACzObBkpwSqrVQkuRCiqkva8UZW1je22wpHPveZ8ZRU6wwwznueee+6FLJCuSdzrb7nZTNjaOJc9/ctdNiaJESPPkeeq+phLH5/L162k0HJ7JikTLvtEFPnFBf+D+0l/dt9tCNJK6xnjmZOg7GdJlPvC/AhQtPo5P3MsHQvwhiobLiLBQABf82y74z4Qt3ldSybKHToLTeW+I5/1B3u2euOD/JQy+zyRowEUs5zAzA1x+oCckJHrRYNCf/uE3AjD4QfONBBMC5PfvY2j3TEi4ZNmd8eHilQDFMK/s8xMhIXPhJLjuJLjAN/8VgRsbPWHwLbAtm5tXRWGRAS5b/99C7FBmgbTMAGXrJ5aIomJir8wA3S5afyLEEkUtEBezfQy+RYpFvdilgmMhNnGxRw2wL8QqScy1fMNE0T4yQCLEKkksxDQUwDj2BNjbK69pdndn/zxwNsUCCOyNGyJ374psbYkMBiLv30++59o1kW5X5NMnkdFI5OXL8nXghCsAAn10NL/Fz2NnpxQFFyR5/bq8BypDWAIg6AcHIoeH60nn4/K8e1deECIgwhAAQULQEXxIUAf43bju3ZvMDJ7jrwDT/XpToIvABeECqBf8EuB7+/W6CKBe0C/Auvv1uvC0XtArQBP9el14VC/oEqCtfr0uPKgX2hdAW79eF0rrhfYFQPCRKi1RyY4ZyZYF4GKQcSiAcSiAcSiAcSiAcSiAcSiAcSiAcSiAcSiAcSiAcSiAcSiAcShAm3z+LG1DAdqEAhjn40dpGwrQFtgIwgxgGAWtH1CAtsC2cQVQgLZQsk2cArSBoqeHKEAbKHpiiAI0DVq+kv4fUICmQetXMPyroABNgtb/5o1oggI0icJzBChAUyDwr16JNihAUzx+LBqhAE3w5InaU0MoQN08f64y9VdQgDrBkO/FC9EMBagLBB/P/yvHxlGxTYPh3tOn4gMUYN2g4FPc509DAdYFqvxZh1ArhwKsg6rSVzTHvywU4EeoqnyPTxKnAKuCVo4iD4s6ARwhTwGWoTrk8e3bIE4IH4cCVCDI1U6dL1/K73Eh4B727ctCASoQ6MBa9zJwJtA4FMA4FMA4FMA4FMA4FMA4FMA4FMA47Qtg4P/n1Uz7AgQ8zeoD7Qug5KQMq+joApgFWkNHEWhwEUYLFMA4OgRQdGCCNXQIUG28II2jZyKIWaAV9Aig7OgUK+gRAMH36ImaUNC1FoDt1swCjaJLAAQfT9mQxtC3GohugCOCxtC5HIyHLNkVNIJOATAv4Mnz9b6jd0MIhoWsB2pH944gPHmLkQGpDf1bwtAVUILa8GNPICRgd1AL/mwKRXfA0cHa8WtXMArDfp8bSdeIf9vCEfxHj8psQBF+GH/PB0A2wIzhrVsih4ciOztCVsfvAyKQAVAbYPr44EDk6Ehkd1fI8oRxQggKQ2QEXMgEe3ulELhvbQmZT3hHxFRn+1Tn/UAAZAWIUXUTHz4IKQn/jCBkB6Pn/ywDHw41DgUwDgRIhVgljSWKzoXYJM+dAFmWCrHKeewsOBViExd71AAjd10IsUYaDYdnsfty4Uz4U4g1zvClHAbm+e9CbJFlfdwKAVwWSJ0EfwixwrCIuYxPBOV5T1gLWCCtWj+4EqCoBbLsFyFhk2UPq9YPJqaCURW6W19IqPRdjCeG/dGsd+Xdbs/dToSERD8aDHrTP4zmvZsSBMXM4INo0afyTudY4vg39zIR4iNFXXfZtc9k4XJw0V9k2R1OFHkIhvVZdn1R8MHCDDDx+zqdxK0c9tz1szAjaKWc1XUTe+OV/iKWFmAcJ8NtJ8Kxe7kvkCGKEiHN45Zz3b/9yN3/uVzUGxXD+RX4F56985hsqA6SAAAAAElFTkSuQmCC'
   /**
-   * REVISION - Set the subset of Aptos chains your wallet supports.
-   * APTOS_CHAINS = ["aptos:devnet", "aptos:testnet", "aptos:localnet", "aptos:mainnet"]
-   * It is recommended to support at least "aptos:mainnet", "aptos:testnet", and "aptos:devnet".
+   * REVISION - Set the subset of Cedra chains your wallet supports.
+   * CEDRA_CHAINS = ["cedra:devnet", "cedra:testnet", "cedra:localnet", "cedra:mainnet"]
+   * It is recommended to support at least "cedra:mainnet", "cedra:testnet", and "cedra:devnet".
    */
-  chains = APTOS_CHAINS
+  chains = CEDRA_CHAINS
   /**
    * The set of accounts that your Wallet has shared information for. These do NOT include private keys.
-   * This list is normally expanded during `aptos:connect` and reduced during `aptos:disconnect`.
+   * This list is normally expanded during `cedra:connect` and reduced during `cedra:disconnect`.
    * NOTE: For demonstration purposes, the template initializes a default account in the constructor,
    * but that should NOT be carried into your final implementation of this template.
    */
@@ -159,59 +159,59 @@ export class MyWallet implements AptosWallet {
    * implement each function.
    *
    * signer - This stores the private keys for an account on-chain. (Example purposes only)
-   * aptos - This handles the network connection. (Your wallet may have a different way of handling the on-chain connection than this Aptos instance)
+   * cedra - This handles the network connection. (Your wallet may have a different way of handling the on-chain connection than this Cedra instance)
    *
    * Remember: These two variables SHOULD LIKELY BE DELETED after you replace your implementations of each feature with ones that use your Wallet.
    */
   signer: Account
-  aptos: Aptos
+  cedra: Cedra
 
   /**
    * REVISION - List all features your wallet supports below.
    * You will need to implement how your wallet supports each.
    *
    * In order to be compatible with the AIP-62 Wallet standard, ensure you are at least supporting all
-   * currently required features by checking the list of features in the `AptosFeatures` type here:
-   * https://github.com/aptos-labs/wallet-standard/blob/main/src/features/index.ts
+   * currently required features by checking the list of features in the `CedraFeatures` type here:
+   * https://github.com/cedra-labs/wallet-standard/blob/main/src/features/index.ts
    *
    * To find the names of features to pass into `this.features` below you can either go into the feature implementations
-   * and look at the <AptosFeature>NameSpace variable, or you can import the `AptosFeatures` type and see the names there.
-   * Ex. See `AptosSignTransactionNamespace` in https://github.com/aptos-labs/wallet-standard/blob/main/src/features/aptosSignTransaction.ts
+   * and look at the <CedraFeature>NameSpace variable, or you can import the `CedraFeatures` type and see the names there.
+   * Ex. See `CedraSignTransactionNamespace` in https://github.com/cedra-labs/wallet-standard/blob/main/src/features/cedraSignTransaction.ts
    *
    * For additional customization, you may implement optional features.
    * For the most support though, you should extend the wallet-standard to support additional features as part of the standard.
    */
-  get features(): AptosFeatures {
+  get features(): CedraFeatures {
     return {
-      'aptos:connect': {
+      'cedra:connect': {
         version: '1.0.0',
         connect: this.connect
       },
-      'aptos:network': {
+      'cedra:network': {
         version: '1.0.0',
         network: this.network
       },
-      'aptos:disconnect': {
+      'cedra:disconnect': {
         version: '1.0.0',
         disconnect: this.disconnect
       },
-      'aptos:signTransaction': {
+      'cedra:signTransaction': {
         version: '1.0.0',
         signTransaction: this.signTransaction
       },
-      'aptos:signMessage': {
+      'cedra:signMessage': {
         version: '1.0.0',
         signMessage: this.signMessage
       },
-      'aptos:onAccountChange': {
+      'cedra:onAccountChange': {
         version: '1.0.0',
         onAccountChange: this.onAccountChange
       },
-      'aptos:onNetworkChange': {
+      'cedra:onNetworkChange': {
         version: '1.0.0',
         onNetworkChange: this.onNetworkChange
       },
-      'aptos:account': {
+      'cedra:account': {
         version: '1.0.0',
         account: this.account
       }
@@ -222,7 +222,7 @@ export class MyWallet implements AptosWallet {
    * REVISION - This constructor should be updated to support your Wallet's implementation of the supported features.
    *
    * The template code's constructor currently initializes `signer` to act as the private key for an account on-chain, and uses
-   * `aptos` to handle the on-chain connection.
+   * `cedra` to handle the on-chain connection.
    *
    */
   constructor() {
@@ -230,11 +230,11 @@ export class MyWallet implements AptosWallet {
     // Create a random signer for our stub implementations.
     this.signer = Account.generate()
     // We will use DEVNET since we can fund our test account via a faucet there.
-    const aptosConfig = new AptosConfig({
+    const cedraConfig = new CedraConfig({
       network: Network.DEVNET
     })
-    // Use the instance Aptos connection to process requests.
-    this.aptos = new Aptos(aptosConfig)
+    // Use the instance Cedra connection to process requests.
+    this.cedra = new Cedra(cedraConfig)
 
     // Update our Wallet object to know that we are connected to this new signer.
     this.accounts = [new MyWalletAccount(this.signer)]
@@ -247,7 +247,7 @@ export class MyWallet implements AptosWallet {
    *
    * @returns Return account info.
    */
-  account: AptosGetAccountMethod = async (): Promise<AccountInfo> => {
+  account: CedraGetAccountMethod = async (): Promise<AccountInfo> => {
     const account = new AccountInfo({
       address: this.signer.accountAddress,
       publicKey: this.signer.publicKey
@@ -271,10 +271,10 @@ export class MyWallet implements AptosWallet {
    * @returns Whether the user approved connecting their account, and account info.
    * @throws Error when unable to connect to the Wallet provider.
    */
-  connect: AptosConnectMethod = async (): Promise<UserResponse<AccountInfo>> => {
+  connect: CedraConnectMethod = async (): Promise<UserResponse<AccountInfo>> => {
     // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
     try {
-      await this.aptos.fundAccount({
+      await this.cedra.fundAccount({
         accountAddress: this.signer.accountAddress,
         amount: 1_000_000
       })
@@ -296,20 +296,20 @@ export class MyWallet implements AptosWallet {
   /**
    * REVISION - Implement this function using your Wallet.
    *
-   * Return the name, chainId, and url of the network connection your wallet is using to connect to the Aptos chain.
+   * Return the name, chainId, and url of the network connection your wallet is using to connect to the Cedra chain.
    *
    * @returns Which network the connected Wallet is pointing to.
    */
-  network: AptosGetNetworkMethod = async (): Promise<NetworkInfo> => {
+  network: CedraGetNetworkMethod = async (): Promise<NetworkInfo> => {
     // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
     // You may use getLedgerInfo() to determine which ledger your Wallet is connected to.
-    const network = await this.aptos.getLedgerInfo()
+    const network = await this.cedra.getLedgerInfo()
     return {
       // REVISION - Ensure the name and url match the chain_id your wallet responds with.
       name: Network.DEVNET,
       // REVISION - For mainnet and testnet is not recommended to make the getLedgerInfo() network call as the chain_id is fixed for those networks.
       chainId: network.chain_id,
-      url: 'https://fullnode.devnet.aptoslabs.com/v1'
+      url: 'https://fullnode.devnet.cedralabs.com/v1'
     }
   }
 
@@ -320,7 +320,7 @@ export class MyWallet implements AptosWallet {
    *
    * @returns Resolves when done cleaning up.
    */
-  disconnect: AptosDisconnectMethod = async (): Promise<void> => {
+  disconnect: CedraDisconnectMethod = async (): Promise<void> => {
     // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
     return Promise.resolve()
   }
@@ -332,13 +332,13 @@ export class MyWallet implements AptosWallet {
    * @param asFeePayer - Optionally, another this signature is acting as a fee-payer for the transaction being signed.
    * @returns The result of whether the user chose to sign the transaction or not.
    */
-  signTransaction: AptosSignTransactionMethod = async (
+  signTransaction: CedraSignTransactionMethod = async (
     transaction: AnyRawTransaction,
     asFeePayer?: boolean
   ): Promise<UserResponse<AccountAuthenticator>> => {
     // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
     if (asFeePayer) {
-      const senderAuthenticator = this.aptos.transaction.signAsFeePayer({
+      const senderAuthenticator = this.cedra.transaction.signAsFeePayer({
         signer: this.signer,
         transaction
       })
@@ -348,7 +348,7 @@ export class MyWallet implements AptosWallet {
         args: senderAuthenticator
       })
     }
-    const senderAuthenticator = this.aptos.transaction.sign({
+    const senderAuthenticator = this.cedra.transaction.sign({
       signer: this.signer,
       transaction
     })
@@ -365,12 +365,12 @@ export class MyWallet implements AptosWallet {
    * @param input - A message to sign with the private key of the connected account.
    * @returns A user response either with a signed message, or the user rejecting to sign.
    */
-  signMessage: AptosSignMessageMethod = async (
-    input: AptosSignMessageInput
-  ): Promise<UserResponse<AptosSignMessageOutput>> => {
+  signMessage: CedraSignMessageMethod = async (
+    input: CedraSignMessageInput
+  ): Promise<UserResponse<CedraSignMessageOutput>> => {
     // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
-    // 'Aptos' + application + address + nonce + chainId + message
-    const messageToSign = `Aptos
+    // 'Cedra' + application + address + nonce + chainId + message
+    const messageToSign = `Cedra
     demoAdapter
     ${this.signer.accountAddress.toString()}
     ${input.nonce}
@@ -388,7 +388,7 @@ export class MyWallet implements AptosWallet {
         fullMessage: messageToSign,
         message: input.message,
         nonce: input.nonce,
-        prefix: 'APTOS',
+        prefix: 'CEDRA',
         signature: signature
       }
     })
@@ -401,7 +401,7 @@ export class MyWallet implements AptosWallet {
    *
    * @returns when the logic is resolved.
    */
-  onAccountChange: AptosOnAccountChangeMethod = async (): Promise<void> => {
+  onAccountChange: CedraOnAccountChangeMethod = async (): Promise<void> => {
     // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
     return Promise.resolve()
   }
@@ -413,7 +413,7 @@ export class MyWallet implements AptosWallet {
    *
    * @returns when the logic is resolved.
    */
-  onNetworkChange: AptosOnNetworkChangeMethod = async (): Promise<void> => {
+  onNetworkChange: CedraOnNetworkChangeMethod = async (): Promise<void> => {
     // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
     return Promise.resolve()
   }

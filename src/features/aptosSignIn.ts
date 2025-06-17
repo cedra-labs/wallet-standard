@@ -1,35 +1,35 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { Signature } from '@aptos-labs/ts-sdk'
+import { Signature } from '@cedra-labs/ts-sdk'
 import { UserResponse } from '../misc'
 import { AccountInfo } from '../AccountInfo'
 
 /**
  * NOTE: This feature is currently experimental and is subject to change.
  *
- * Documentation: [Sign in with Aptos](https://github.com/aptos-foundation/AIPs/pull/556)
+ * Documentation: [Sign in with Cedra](https://github.com/cedra-foundation/AIPs/pull/556)
  */
 
 /** Version of the feature. */
-export type AptosSignInVersion = '0.1.0'
+export type CedraSignInVersion = '0.1.0'
 /** Name of the feature. */
-export const AptosSignInNamespace = 'aptos:signIn'
+export const CedraSignInNamespace = 'cedra:signIn'
 
-export type AptosSignInFeature = {
+export type CedraSignInFeature = {
   /** Namespace for the feature. */
-  [AptosSignInNamespace]: {
+  [CedraSignInNamespace]: {
     /** Version of the feature API. */
-    version: AptosSignInVersion
-    signIn: AptosSignInMethod
+    version: CedraSignInVersion
+    signIn: CedraSignInMethod
   }
 }
 
-export type AptosSignInMethod = (
-  input: AptosSignInInput
-) => Promise<UserResponse<AptosSignInOutput>>
+export type CedraSignInMethod = (
+  input: CedraSignInInput
+) => Promise<UserResponse<CedraSignInOutput>>
 
-export type AptosSignInInput = {
+export type CedraSignInInput = {
   address?: string
   uri?: string
   version?: string
@@ -43,7 +43,7 @@ export type AptosSignInInput = {
   resources?: string[]
 }
 
-export type AptosSignInRequiredFields = {
+export type CedraSignInRequiredFields = {
   domain: string
   address: string
   uri: string
@@ -51,9 +51,9 @@ export type AptosSignInRequiredFields = {
   chainId: string
 }
 
-export type AptosSignInOutput = {
+export type CedraSignInOutput = {
   account: AccountInfo
-  input: AptosSignInInput & AptosSignInRequiredFields
+  input: CedraSignInInput & CedraSignInRequiredFields
   plainText: string
   signingMessage: Uint8Array
   signature: Signature

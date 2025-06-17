@@ -1,9 +1,9 @@
-// Copyright © Aptos Foundation
+// Copyright © Cedra Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { WalletWithAptosFeatures } from './features'
+import { WalletWithCedraFeatures } from './features'
 
-export interface AptosWallet extends WalletWithAptosFeatures {
+export interface CedraWallet extends WalletWithCedraFeatures {
   /**
    * Website URL of the Wallet
    */

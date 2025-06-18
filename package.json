@@ -1,7 +1,7 @@
 {
   "name": "@cedra-labs/wallet-standard",
   "description": "Cedra wallet standard",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "Apache-2.0",
   "homepage": "https://github.com/cedra-labs/wallet-standard",
   "bugs": {
@@ -41,7 +41,7 @@
     "prettier:fix": "prettier -w --ignore-unknown ."
   },
   "peerDependencies": {
-    "@cedra-labs/ts-sdk": "^2.0.0",
+    "@cedra-labs/ts-sdk": "^2.0.9",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {

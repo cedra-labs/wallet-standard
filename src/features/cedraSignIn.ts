@@ -77,9 +77,9 @@ export type CedraSignInOutput = {
   plainText: string
   signingMessage: Uint8Array
   /**Add commentMore actions
-   * Input fields to the `signIn` signing request to the wallet. The wallet will ensure that any bound fields not included in the `AptosSignInInput` are included in the output.
+   * Input fields to the `signIn` signing request to the wallet. The wallet will ensure that any bound fields not included in the `CedraSignInInput` are included in the output.
    */
-  input: AptosSignInInput & AptosSignInBoundFields
+  input: CedraSignInInput & CedraSignInBoundFields
   /**
    * Signature of the SIWA Signing Message constructed from the `input` fields.
    */
